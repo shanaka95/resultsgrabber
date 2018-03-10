@@ -1,0 +1,21 @@
+from StringIO import StringIO
+import base64
+import gzip
+
+contents = 'The quick brown fox jumps over the lazy dog'
+
+zip_text_file = StringIO()
+
+zipper = gzip.GzipFile(mode='wb', fileobj=zip_text_file)
+
+zipper.write(contents)
+zipper.close()
+
+enc_text =  base64.b64encode(zip_text_file.getvalue())
+print enc_text
+
+sample_text_file = gzip.GzipFile(mode='rb',
+    fileobj=StringIO(base64.b64decode('H4sIAAAAAAAAAK1UTUwTQRR 9AewgCIohhCEA9FAcBv8i5EYqQKhsSCx IOa1Ol2oFunu PMbLvlQCQmevBioh5MMHrw4IGbJ4/Gg4kJJmq8eDLe9WZMPDmz1O0SSkDCJH2d2Tcz73vf 94s/YAw5Qx251ABabYwiDaGeHYc0XDd1zdv2258DEJgFCLEQplRpAuLxWGHyDLMsxbJOPT0EKjRWKyXtln 6gU0zrD8SZtjZqI8thm0Xku4txNkzmrn0zmsi8EHH648a a9JADgUHksROUQUJtLGRlx3L4F8xCUnwPeLKw2VFbzDI6pSx1tBumYa7qVp5aJTaFdjJ/9N  ZZBbFTJTO4RKfZEYBCQzl0SIDM9hZATZi2nm/U6LZg4RgRtoWmE9lkYgxnMRCktVaISvGGColDC6chU dT96hp0GoiUOIG3PYzStQDCkrDx2oDjcpJKgxySVmSVTAbPr9q1MPF5fHAxBIwA6dIM4nJI0CWlwSowprNClhmbODCYhweSbj3iGgbWWHYUWTmBmIGHMoTfCgQ2lB8dbEld0l89ovw2vcNstglCUyMS02OZmIjww7klzt/8j1E6eiRAREKuS5gZukO iyESwDcVFBeaHs3vJcsnVsHYhGnhJtGM8gm4jRlY89MUpJacq6ic1fL/unF4dyQ42qfsV22BVFREpV7tWcrMgTgJrLdz6//uo4SmxhJbajVbRWu0prdWrSsE4OyrZ6xIaU4r1VHTHSDLGSM6  tMnGYNiUdcZsqkRlvTr8HEuYls10rCV1ZlChTuzzYobdmGFfzA7fvNeLGKHMyGP3Qp//oOdvqvi1HHe8vncb4IxlEYzM5W52 8vin58BqLkK4QIitlKyuqHba9AjGzfoatL tcFa0ty6O6vTXUtxRxWVKNtVKeTAhpiCUteH1tP1JQMXL1jWhrKulR0p4pnV1MVNgWcxa/n /MXvhXsnAuoNKFPHoLmyb8LOpzG7u/S4s HRt/u t6 cw HtE6O/8K5I3AT6BHRVV50oEfmmY7wl5Sk7UFVxO32K0zl3QRxXJiGd7S6UlOtNEUtHwrDM1NhIbHhz2W9GVX0FBqGCZWSgMhy6db15CVwv16xaL2xvzZTp396yNOdu2ZiVoit/6i3w8spS5y9ln sYFQgAAA==')))
+DEFAULT_SAMPLE = sample_text_file.read()
+sample_text_file.close()
+print DEFAULT_SAMPLE
